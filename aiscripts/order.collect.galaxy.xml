@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Script used by ships (excluding drones) to collect crates/objects in a radius around a specified point in space.
+-->
+<aiscript name="order.collect.galaxy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="aiscripts.xsd" version="2">
+	<order id="CollectDropsEverywhere" name="Collect All Drops" description="Constantly searches galaxy for loot" category="trade">
+		<params>
+			<param name="space" default="this.ship.cluster" type="object" text="{1041, 10117}" comment="Space. Space or Station.">
+				<input_param name="class" value="[class.cluster, class.sector, class.zone, class.station]" />
+			</param>
+			<param name="basebasket" default="this.ship.warebasket.list" type="list" text="{1041, 10146}" advanced="true" comment="Wares. Base warebasket. Default to that setup in jobs">
+				<input_param name="type" value="'ware'" />
+				<input_param name="cancarry" value="true" />
+			</param>
+			<param name="debugchance" type="bool" default="0" advanced="true" text="{1041, 10086}" comment="Print debug output">
+				<input_param name="truevalue" value="100" />
+			</param>
+		</params>
+		<requires>
+			<match shiptype="shiptype.lasertower" negate="true" />
+		</requires>
+	</order>
+	<interrupts>
+		<handler ref="SectorChangeHandler" />
+		<handler ref="AttackHandler" />
+		<handler ref="MissileLockHandler" />
+		<handler ref="ScannedHandler" />
+		<handler ref="InspectedHandler" />
+		<handler ref="FoundAbandonedHandler" />
+		<handler ref="FoundLockboxHandler" />
+	</interrupts>
+	<attention min="unknown">
+		<actions>
+			<label name="start" />
+			<set_value name="$ship" exact="this.assignedcontrolled" />
+			<set_value name="$lootsector" exact="this.assignedcontrolled.sector" />
+			<set_value name="$lootzone" exact="this.assignedcontrolled.zone" />
+			<create_position name="$zeropos" x="0" y="0" z="0" />
+			<do_if value="not this.assignedcontrolled.isclass.ship">
+				<debug_text text="this.assignedcontrolled.knownname + ' is not a valid ship class for this script'" />
+				<return value="false" />
+			</do_if>
+			<do_if value="this.ship.sector.hashazardousregion or this.ship.sector.trueowner.hasrelation.enemy.{this.trueowner}">
+				<resume label="changesectors" />
+			</do_if>
+			<do_if value="not this.ship.ammostorage.missile.free or this.ship.cargo.free.all le 10" comment="TODO fix issue where ship only sells 10 and goes back to loot. probably a do_while on cargo capacity from 90% to 40 or something">
+				<!-- return to drop off shit -->
+				<!-- WARNING THIS IS COPY AND PASTE FROM ORDER.PLUNDER. FIX BUGS AND VAR NAMES FIRST -->
+				<!-- TODO eventually make selling loot work without becoming a debug spamfest. this code seems to work but holy crap does it do weird stuff with npcs-->
+				<debug_text text="this.ship.knownname + ' has ' + (1 - ($freecapacity / $totalcapacity)) * 100 + '% of cargo filled. Looking to offload some.'" chance="$debugchance" />
+				<find_station groupname="$factionstations" owner="$ship.trueowner" checkoperational="true" space="player.galaxy" multiple="true">
+					<match_any>
+						<match equipmentdock="true" />
+						<match wharf="true" />
+					</match_any>
+				</find_station>
+				<set_value name="$base" exact="$factionstations.random" />
+				<!--<write_to_logbook category="upkeep" title="'scav collector full'" text="'%s of %s missiles free, %s of %s cargo free. moving to %s in %s to offload'.[this.ship.ammostorage.missile.free, this.ship.ammostorage.missile.capacity, this.ship.cargo.free.all, this.ship.cargo.capacity.all, $base.knownname, $base.sector.knownname]" />-->
+				<run_script name="'move.generic'" sinceversion="2">
+					<param name="destination" value="$base" />
+				</run_script>
+				<run_script name="'order.dock'" sinceversion="2">
+					<param name="destination" value="$base" />
+				</run_script>
+				<create_order object="this.ship" id="'MoveDie'" immediate="true">
+					<param name="byidle" value="true" />
+					<param name="byhostile" value="true" />
+				</create_order>
+				<!--<do_if value="@$base.isoperational and this.ship.trueowner == $base.trueowner">
+					<run_script name="'order.assign.commander'">
+						<param name="commander" value="$base" />
+						<param name="cancelorders" value="false" />
+					</run_script>
+					<write_to_logbook category="tips" title="'commander assigned, maybe done?'" text="'Commander assigned: station %s in %s.'.[$base.knownname, $base.sector.knownname]"/>
+				</do_if>
+
+				<set_value name="$indices_found" exact="[]" />
+				<do_all exact="$basebasket.count" counter="$i">
+					<do_if value="this.ship.cargo.list.indexof.{$basebasket.{$i}}">
+						<append_to_list name="$indices_found" exact="$i" />
+					</do_if>
+				</do_all>
+				<do_if value="$base and $base != this.ship.commander and $indices_found.count">
+					<do_all exact="$indices_found.count" counter="$i">
+						<do_if value="$base.relationto.{this.ship} lt 0">
+							<signal_objects object="player.galaxy" param="'Cover'" param2="[this.ship, $base.owner, true, true]" />
+						</do_if>
+						<write_to_logbook category="tips" title="'cargo done'" text="'%s (%s) selling to client %s (%s) in %s, %s.'.[this.ship.knownname, this.ship, $base.knownname, $base, $base.sector.knownname, $base.cluster.knownname]"/>
+						<debug_text text="'%s (%s) selling %s to client %s (%s) in %s, %s.'.[this.ship.knownname, this.ship, $base.knownname, $base, $base.sector.knownname, $base.cluster.knownname]" chance="$debugchance" />
+						<run_script name="'order.trade.single.sell'">
+							<param name="ware" value="$basebasket.{$indices_found.{$i}}" />
+							<param name="locations" value="[$base]" />
+							<param name="pricethreshold" value="1Cr" />
+							<param name="debugchance" value="$debugchance" />
+						</run_script>
+					</do_all>
+				</do_if>
+				<do_else>
+					<set_value name="$traderunscript" exact="if (this.ship.commander.isoperational and not this.ship.commander.isclass.ship) then 'trade.find.commander' else 'trade.find.free'" />
+					<run_script name="$traderunscript">
+						<param name="warebasket" value="this.ship.cargo.list" />
+						<param name="range" value="$space" />
+						<param name="sellspaces" value="[this.ship.cluster]" />
+						<param name="debugchance" value="$debugchance" />
+						<save_retval name="buyoffer" variable="$buyoffer" />
+					</run_script>
+					<! Execute the trade >
+					<do_if value="$buyoffer.available and $buyoffer.amount">
+						<clamp_trade_amount trade="$buyoffer" amount="$buyoffer.amount" buyer="$buyoffer.buyer" seller="this.ship" result="$amount" />
+						<debug_text text="'Buyer found! Selling %1 %2 to %3 (%4)'.[$amount, $buyoffer.ware, $buyoffer.buyer.knownname, $buyoffer.buyer]" chance="$debugchance" />
+						<write_to_logbook category="tips" title="'cargo done'" text="'Attempting to sell cargo. now in %s with %s of %s missiles free, %s of %s cargo free.'.[this.ship.sector.knownname, this.ship.ammostorage.missile.free, this.ship.ammostorage.missile.capacity, this.ship.cargo.free.all, this.ship.cargo.capacity.all]"/>
+						<create_trade_order object="this.ship" tradeoffer="$buyoffer" amount="$amount" immediate="true" internal="true" />
+					</do_if>
+					<do_else>
+						<write_to_logbook category="tips" title="'cargo done'" text="'dropping cargo'"/>
+						<do_if value="not this.isplayerowned">
+							<! if we can't find a trade, drop the least valuable wares in our cargo. >
+							<set_value name="$currentcargo" exact="this.ship.cargo.list" />
+							<do_all exact="$currentcargo.count" counter="$i">
+								<do_if value="not $dropware? or ($currentcargo.{$i}.averageprice lt @$dropware.averageprice)">
+									<set_value name="$dropware" exact="$currentcargo.{$i}" />
+								</do_if>
+							</do_all>
+							<do_if value="$dropware?">
+								<set_value name="$donotcollect" />
+								<debug_text text="'No buyer found. Dropping %1'.[$dropware]" chance="$debugchance" />
+								<drop_cargo object="this.ship" ware="$dropware" exact="this.ship.cargo.{$dropware}.max" />
+								<remove_value name="$dropware" />
+							</do_if>
+							<remove_value name="$currentcargo" />
+							<remove_value name="$offload" />
+						</do_if>
+						<resume label="start" />
+					</do_else>
+				</do_else>
+				<remove_value name="$indices_found" />
+				<write_to_logbook category="tips" title="'cargo done'" text="'Finished offloading cargo. now in %s with %s of %s missiles free, %s of %s cargo free.'.[this.ship.sector.knownname, this.ship.ammostorage.missile.free, this.ship.ammostorage.missile.capacity, this.ship.cargo.free.all, this.ship.cargo.capacity.all]"/>-->
+			</do_if>
+			<!-- find crates to collect -->
+			<find_object groupname="$targetgroup" class="class.drop" canbepickedup="true" state="componentstate.operational" space="this.zone" multiple="true">
+				<match state="componentstate.wreck" negate="true" />
+			</find_object>
+			<do_if value="not @$targetgroup.count and $lootzone.adjacentzones.count gt 0">
+				<set_value name="$adjacentzone" exact="$lootzone.adjacentzones.random" />
+				<!--<write_to_logbook category="upkeep" title="'scavs'" text="'no targets I, moving to ' +$adjacentzone.name"/>-->
+				<run_script name="'move.generic'" sinceversion="1">
+					<param name="destination" value="$adjacentzone" />
+					<param name="position" value="$zeropos" />
+					<param name="debugchance" value="$debugchance" />
+				</run_script>
+				<debug_text text="'target group is empty.'" chance="$debugchance" />
+			</do_if>
+			<run_script name="'move.random'" sinceversion="2">
+				<param name="TimeOut" value="30s" />
+			</run_script>
+			<find_object groupname="$targetgroup" class="class.drop" canbepickedup="true" state="componentstate.operational" space="this.zone" multiple="true">
+				<match state="componentstate.wreck" negate="true" />
+			</find_object>
+			<do_if value="not @$targetgroup.count" chance="50">
+				<resume label="changesectors" />
+			</do_if>
+			<label name="collect" />
+			<do_if value="@$targetgroup.count">
+				<!--<write_to_logbook category="upkeep" title="'scavs'" text="'loot found!!!!' + $targetgroup.{1}.knownname + ' in ' + $ship.sector.knownname"/>-->
+				<create_group groupname="$filteredtargets" />
+				<do_all exact="$targetgroup.count" counter="$target_i">
+					<do_if value="not $targetgroup.{$target_i}.ismission and not $targetgroup.{$target_i}.iswreck and $targetgroup.{$target_i}.isoperational and $targetgroup.{$target_i}.exists">
+						<add_to_group groupname="$filteredtargets" object="$targetgroup.{$target_i}" />
+						<!--<write_to_logbook category="squad" title="'loot to collect ' + this.ship.idcode" text="'Preparing to pick up ' + $targetgroup.{$target_i}" interaction="guidance" object="this.ship" />-->
+					</do_if>
+				</do_all>
+				<create_order id="'Collect'" object="this.ship" immediate="true">
+					<param name="targetlist" value="$filteredtargets" />
+					<param name="debugchance" value="$debugchance" />
+				</create_order>
+			</do_if>
+			<label name="changesectors" />
+			<find_cluster_in_range name="$AdjacentClusters" object="this.ship" maxdistance="1" multiple="true" />
+			<set_value name="$AdjacentSectors" exact="[]" />
+			<do_all exact="$AdjacentClusters.count" counter="$i">
+				<find_sector groupname="$AdjacentSectors" space="$AdjacentClusters.{$i}" multiple="true" append="true" />
+				<run_script name="'move.generic'" sinceversion="1">
+					<param name="destination" value="$AdjacentSectors.random" />
+					<param name="position" value="$zeropos" />
+					<param name="debugchance" value="$debugchance" />
+				</run_script>
+			</do_all>
+			<wait min="1s" max="2s" sinceversion="1" />
+			<label name="finish" />
+		</actions>
+	</attention>
+</aiscript>

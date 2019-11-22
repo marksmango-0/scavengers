@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<diff>
+  <add sel="/language[@id='44']" >
+    <page id="531515" >
+        <t id="1001">Junk Salvage</t>
+        <t id="1002">Mangled scrap from destroyed ships and stations.</t>
+        <t id="1003">Mechanical Salvage</t>
+        <t id="1004">A collection of usable mechanical parts.</t>
+        <t id="1005">Loose Ship Components</t>
+        <t id="1006">Largely intact systems from wrecked ships and stations.</t>
+        <t id="1007">Quality Thruster Parts</t>
+        <t id="1008">Expertly manufactured engine thruster parts.</t>
+        <t id="1009">High-Capacity Shield Generators</t>
+        <t id="1010">Shield generators with high throughput for faster regeneration.</t>
+        <t id="1011">Low-Resistance Pulse Capacitors</t>
+        <t id="1012">Fast-firing energy efficient components for pulse weapons.</t>
+    </page>
+  </add>
+</diff>   

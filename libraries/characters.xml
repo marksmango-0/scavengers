@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<diff>
+<add sel="/characters">
+  <!-- scavenger -->
+  <!-- Generic scavenger Characters -->
+  <character id="trader_scavenger_random" group="scavenger.trader">
+    <category tags="[crew, pilot, aipilot, traderpilot, masstraffic]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="piloting" min="7" max="14"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="engineering" max="2"/>
+      <skill type="management" max="1"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger"/>
+    <stock ref="'scavenger_trader'" />
+  </character>
+  <character id="fighter_scavenger_random" group="scavenger.pilot">
+    <category tags="[crew, officer, pilot, aipilot, fighterpilot, commander, masstraffic, watchdog]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="piloting" min="7" max="14"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="engineering" max="2"/>
+      <skill type="management" exact="0"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger"/>
+  </character>
+  <character id="manager_scavenger_random" group="scavenger.manager">
+    <category tags="[crew, officer, manager]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="management" min="4" max="11"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="piloting" min="2" max="4"/>
+      <skill type="engineering" exact="0"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger"/>
+  </character>
+  <character id="service_scavenger_random" group="scavenger.service">
+    <category tags="[crew, service]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="engineering" min="4" max="11"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="piloting" min="3" max="4"/>
+      <skill type="management" exact="0"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger"/>
+  </character>
+  <character id="marine_scavenger_random" group="scavenger.marine">
+    <category tags="[crew, marine]" faction="scavenger" race="argon"/>
+    <owner exact="scavenger"/>
+    <skills>
+      <skill type="boarding" min="1" max="5"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="engineering" exact="0"/>
+      <skill type="piloting" min="2" max="4"/>
+      <skill type="management" exact="0"/>
+    </skills>
+  </character>
+  <character id="passenger_scavenger_random" group="scavenger.passenger">
+    <category tags="[crew, passenger]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="boarding" exact="0"/>
+      <skill type="engineering" exact="0"/>
+      <skill type="management" exact="0"/>
+      <skill type="morale" max="12"/>
+      <skill type="piloting" min="2" max="4"/>
+    </skills>
+    <owner exact="scavenger"/>
+  </character>
+  <character id="prisoner_scavenger_random" group="scavenger.prisoner">
+    <category tags="[crew, prisoner]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="boarding" exact="0"/>
+      <skill type="engineering" exact="0"/>
+      <skill type="management" exact="0"/>
+      <skill type="morale" max="12"/>
+      <skill type="piloting" min="2" max="4"/>
+    </skills>
+    <owner exact="scavenger"/>
+  </character>
+
+  <!-- Rookies -->
+  <character id="service_scavenger_random_rookie" group="scavenger.service">
+    <category tags="[crew, service, rookie]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="engineering" min="1" max="2"/>
+      <skill type="morale" max="3"/>
+
+      <skill type="piloting" max="1"/>
+      <skill type="management" exact="0"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger"/>
+  </character>
+  <character id="marine_scavenger_random_rookie" group="scavenger.marine">
+    <category tags="[crew, marine, rookie]" faction="scavenger" race="argon"/>
+    <owner exact="scavenger"/>
+    <skills>
+      <skill type="boarding" min="1" max="2"/>
+      <skill type="morale" max="3"/>
+
+      <skill type="engineering" exact="0"/>
+      <skill type="piloting" max="1"/>
+      <skill type="management" exact="0"/>
+    </skills>
+  </character>
+
+  <character id="platform_trader_scavenger_random" group="scavenger.trader">
+    <category tags="[trader, licencetrader]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="management" min="4" max="11"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="piloting" min="2" max="4"/>
+      <skill type="engineering" max="1"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger"/>
+    <stock ref="'scavenger_trader'" />
+  </character>
+  <character id="ship_trader_scavenger_random" group="scavenger.shiptrader">
+    <category tags="[trader, shiptrader]" faction="scavenger" race="argon"/>
+    <skills>
+      <skill type="management" min="4" max="11"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="piloting" min="2" max="4"/>
+      <skill type="engineering" max="1"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger"/>
+    <stock ref="'scavenger_trader'" />
+  </character>
+  <character id="shadyguy_scavenger_random" group="scavenger.shadyguy">
+    <category tags="[shadyguy]" faction="scavenger" race="argon" />
+    <skills>
+      <skill type="piloting" min="8" max="11"/>
+      <skill type="morale" max="12"/>
+
+      <skill type="engineering" max="2"/>
+      <skill type="management" exact="0"/>
+      <skill type="boarding" exact="0"/>
+    </skills>
+    <owner exact="scavenger" />
+    <stock ref="'scavenger_shadyguy'" />
+  </character>
+</add>
+</diff>

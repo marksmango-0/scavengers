@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<diff>
+    <add sel="/peopledefinitions" >
+        <people id="scavenger_repo_crew">
+            <fillpercent exact="100" />
+            <person role="marine" weight="30">
+                <select faction="argon" tags="[service, rookie]" />
+            </person>
+        </people>
+    </add>
+</diff>

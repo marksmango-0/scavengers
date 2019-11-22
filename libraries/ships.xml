@@ -1,0 +1,28 @@
+<diff>
+    <add sel="/ships">
+        <ship id="scavenger_scout_s" group="scv_scout_s">
+            <category tags="[military, scout, light, mission]" faction="[argon, scaleplate, hatikvah, alliance]" size="ship_s" />
+            <pilot>
+                <select faction="scavenger" tags="fighterpilot" />
+            </pilot>
+            <drop ref="ship_small_military" />
+            <people ref="argon_military_crew" />
+        </ship>
+        <ship id="scavenger_fighter_light_s" group="scv_scout_s">
+            <category tags="[military, fighter, light, selection, mission]" faction="[argon, scaleplate, hatikvah, alliance]" size="ship_s" />
+            <pilot>
+                <select faction="argon" tags="fighterpilot" />
+            </pilot>
+            <drop ref="ship_small_military" />
+            <people ref="argon_military_crew" />
+        </ship>
+        <ship id="scavenger_repo_s" group="scv_scout_s">
+            <category tags="[military, fighter, light, selection, mission]" faction="[argon, scaleplate, hatikvah, alliance]" size="ship_s" />
+            <pilot>
+                <select faction="argon" tags="fighterpilot" />
+            </pilot>
+            <drop ref="ship_small_military" />
+            <people ref="argon_military_crew" />
+        </ship>
+    </add>
+</diff>

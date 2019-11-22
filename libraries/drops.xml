@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<diff>
+	<add sel="/droplists/droplist[@id='ship_small_military']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="100">
+			<ware ware="inv_sm_salvage" min="1" max="10" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_military']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_pirate']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="100">
+			<ware ware="inv_sm_salvage" min="1" max="10" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_pirate']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_civilian']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="100">
+			<ware ware="inv_sm_salvage" min="1" max="10" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_civilian']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_xenon']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="100">
+			<ware ware="inv_sm_salvage" min="1" max="12" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_xenon']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_khaak']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="100">
+			<ware ware="inv_sm_salvage" min="1" max="12" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_small_khaak']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_medium_civilian']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="100">
+			<ware ware="inv_sm_salvage" min="1" max="25" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_medium_civilian']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_large_civilian']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="15">
+			<ware ware="inv_sm_salvage" min="1" max="40" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_large_civilian']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_large_military']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="15">
+			<ware ware="inv_sm_salvage" min="1" max="40" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_large_military']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_large_xenon']/drop[@macro='sm_gen_wares_common_01_macro']/collectable/wares">
+		<select weight="15">
+			<ware ware="inv_sm_salvage" min="1" max="52" />
+		</select>
+		<select weight="7">
+			<ware ware="inv_med_salvage" min="1" max="5" />
+		</select>
+		<select weight="4">
+			<ware ware="inv_lg_salvage" min="1" max="2" />
+		</select>
+	</add>
+	<add sel="/droplists/droplist[@id='ship_large_xenon']">
+		<drop macro="sm_gen_wares_rare_01_macro" chance="1">
+			<collectable>
+				<wares selection="random">
+					<select weight="1">
+						<ware ware="inv_hq_salvage_engine" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_shield" min="1" max="1" />
+					</select>
+					<select weight="1">
+						<ware ware="inv_hq_salvage_pulse" min="1" max="1" />
+					</select>
+				</wares>
+			</collectable>
+		</drop>
+	</add>
+</diff>

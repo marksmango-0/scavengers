@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content id="scavvers" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" version="100" date="2019-04-24" save="0">
+  <text language="7" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+  <text language="33" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+  <text language="34" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+  <text language="39" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+  <text language="44" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+  <text language="49" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+  <text language="86" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+  <text language="88" name="Scavengers" description="Adds the Scavenger faction to the universe."  author="marksmango" />
+</content>

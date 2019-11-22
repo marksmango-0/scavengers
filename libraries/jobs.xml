@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<diff>
+	<add sel="/jobs">
+		<job id="scavenger_looter" name="Collector">
+			<modifiers rebuild="true" commandeerable="true" />
+			<orders>
+				<order order="CollectDropsEverywhere" default="true" />
+			</orders>
+			<category faction="argon" tags="[scout]" size="ship_s" />
+			<quota galaxy="40" cluster="3" /> <!--this is a testing value. set back to 40/1 ish -->
+			<location class="galaxy" macro="xu_ep2_universe_macro" />
+			<environment buildatshipyard="false" />
+			<basket basket="all" />
+			<ship>
+				<select faction="argon" tags="[scout]" size="ship_s" />
+				<loadout>
+					<level min="0" max="0.4" />
+				</loadout>
+				<owner exact="scavenger" overridenpc="false" />
+			</ship>
+		</job>
+		<job id="scavenger_reposessor" name="Reposessor">
+			<modifiers rebuild="true" commandeerable="true" />
+			<orders>
+				<order order="ClaimUnownedShips" default="true" />
+			</orders>
+			<category faction="argon" tags="[scout]" size="ship_s" />
+			<quota galaxy="40" cluster="5" /> <!--this is a testing value. set back to 10/1 ish -->
+			<location class="galaxy" macro="xu_ep2_universe_macro" />
+			<environment buildatshipyard="false" />
+			<ship>
+				<select faction="argon" tags="[scout]" size="ship_s" />
+				<loadout>
+					<level exact="1.0" />
+				</loadout>
+				<people>
+					<fillpercent exact="100" />
+					<person role="marine" weight="20">
+						<select faction="faction.argon" tags="tag.marine" />
+					</person>
+				</people>
+				<owner exact="scavenger" overridenpc="false" />
+			</ship>
+		</job>
+		<!--<job id="scavenger_station_defender_sm" name="Reposessor">
+			<modifiers rebuild="true" commandeerable="true"/>
+			<orders>
+				<order order="ProtectStation" default="true" />
+			</orders>
+			<category faction="argon" tags="[scout]" size="ship_s"/>
+			<quota galaxy="40" cluster="5"/>
+			<environment buildatshipyard="false"/>
+			<ship>
+			  <select faction="argon" tags="[scout]" size="ship_s"/>
+			  <loadout>
+				<level min="0.3" max="0.7"/>
+			  </loadout>
+			  <owner exact="scavenger" overridenpc="false"/>
+			</ship>
+		</job>
+		<job id="scavenger_station_defender_md" name="Reposessor">
+			<modifiers rebuild="true" commandeerable="false"/>
+			<orders>
+				<order order="ProtectStation" default="true" />
+			</orders>
+			<category faction="argon" tags="[military]" size="ship_m"/>
+			<quota galaxy="1" cluster="1"/>
+			<environment buildatshipyard="false"/>
+			<ship>
+			  <select faction="argon" tags="[military]" size="ship_m"/>
+			  <loadout>
+				<level min="0.5" max="0.9"/>
+			  </loadout>
+			  <owner exact="scavenger" overridenpc="false"/>
+			</ship>
+		</job>-->
+	</add>
+</diff>

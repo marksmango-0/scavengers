@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<diff> 
+	<add sel="/wares">
+		<ware id="inv_sm_salvage" name="{531515, 1001}" description="{531515, 1002}" transport="inventory" volume="1" tags="inventory">
+			<price min="1800" average="2200" max="2500" />
+			<container ref="sm_gen_wares_common_01_macro" />
+			<icon video="ware_inventory_generic_macro" />
+			<sources>
+				<source type="{20224,1001}" />
+				<source type="{20224,21}" />
+			</sources>
+		</ware>
+		<ware id="inv_med_salvage" name="{531515, 1003}" description="{531515, 1004}" transport="inventory" volume="1" tags="inventory">
+			<price min="20000" average="22000" max="40000" />
+			<container ref="sm_gen_wares_common_01_macro" />
+			<icon video="ware_inventory_generic_macro" />
+			<sources>
+				<source type="{20224,1001}" />
+				<source type="{20224,21}" />
+			</sources>
+		</ware>
+		<ware id="inv_lg_salvage" name="{531515, 1005}" description="{531515, 1006}" transport="inventory" volume="1" tags="inventory">
+			<price min="50000" average="100000" max="150000" />
+			<container ref="sm_gen_wares_common_01_macro" />
+			<icon video="ware_inventory_generic_macro" />
+			<sources>
+				<source type="{20224,1001}" />
+				<source type="{20224,21}" />
+			</sources>
+		</ware>
+		<ware id="inv_hq_salvage_engine" name="{531515, 1007}" description="{531515, 1008}" transport="inventory" volume="1" tags="inventory">
+			<price min="250000" average="275000" max="300000" />
+			<container ref="sm_gen_wares_rare_01_macro" />
+			<icon video="ware_inventory_generic_macro" />
+			<sources>
+				<source type="{20224,1001}" />
+				<source type="{20224,21}" />
+			</sources>
+		</ware>
+		<ware id="inv_hq_salvage_shield" name="{531515, 1009}" description="{531515, 1010}" transport="inventory" volume="1" tags="inventory">
+			<price min="250000" average="275000" max="300000" />
+			<container ref="sm_gen_wares_rare_01_macro" />
+			<icon video="ware_inventory_generic_macro" />
+			<sources>
+				<source type="{20224,1001}" />
+				<source type="{20224,21}" />
+			</sources>
+		</ware>
+		<ware id="inv_hq_salvage_pulse" name="{531515, 1011}" description="{531515, 1012}" transport="inventory" volume="1" tags="inventory">
+			<price min="250000" average="275000" max="300000" />
+			<container ref="sm_gen_wares_rare_01_macro" />
+			<icon video="ware_inventory_generic_macro" />
+			<sources>
+				<source type="{20224,1001}" />
+				<source type="{20224,21}" />
+			</sources>
+		</ware>
+	</add>
+</diff>

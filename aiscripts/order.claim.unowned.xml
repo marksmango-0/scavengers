@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Script used by ships (excluding drones) to collect crates/objects in a radius around a specified point in space.
+-->
+<aiscript name="order.claim.unowned" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="aiscripts.xsd" version="1">
+    <order id="ClaimUnownedShips" name="Claim Ships" description="Seeks out unowned ships." category="trade">
+        <params>
+            <param name="debugchance" type="bool" default="0" advanced="true" text="{1041, 10086}" comment="Print debug output">
+                <input_param name="truevalue" value="100" />
+            </param>
+        </params>
+        <requires>
+            <match shiptype="shiptype.lasertower" negate="true" />
+        </requires>
+    </order>
+    <interrupts>
+        <handler ref="SectorChangeHandler" />
+        <handler ref="AttackHandler" />
+        <handler ref="MissileLockHandler" />
+        <handler ref="ScannedHandler" />
+        <handler ref="InspectedHandler" />
+        <handler ref="FoundLockboxHandler" />
+    </interrupts>
+    <attention min="unknown">
+        <actions>
+            <do_if value="not this.assignedcontrolled.isclass.ship">
+                <debug_text text="this.assignedcontrolled.knownname + ' is not a valid ship class for this script'" />
+                <return value="false" />
+            </do_if>
+            <!--<write_to_logbook category="upkeep" title="'scav script start : ' +this.ship.idcode" text="'ship claim script started for '+ this.ship.idcode + ' in ' + this.ship.sector.knownname + ' sector, '+ this.ship.cluster.knownname + ' cluster'" />-->
+            <label name="start" />
+            <set_value name="$zonechecks" exact="5" comment="number of individual zones we check before doing a full sector scan" />
+            <set_value name="$ship" exact="this.assignedcontrolled" />
+            <create_position name="$zeropos" x="0" y="0" z="0" />
+            <!-- TODO make this entire order faction agnostic so it can be used for player orders and other factions as well. -->
+            <!-- UPDATE it mostly is. just need to recheck a few things -->
+            <find_station groupname="$factionstations" owner="$ship.trueowner" state="componentstate.operational" space="player.galaxy" multiple="true">
+                <match_any>
+                    <match equipmentdock="true" />
+                    <match wharf="true" />
+                </match_any>
+            </find_station>
+            <do_if value="this.ship.sector.hashazardousregion or this.ship.sector.trueowner.hasrelation.enemy.{this.trueowner}">
+                <resume label="changesectors" />
+            </do_if>
+            <!-- eventually we will get npc restocking working. for now tell this ship to die and let a new job ship replace it -->
+            <do_if value="this.assignedcontrolled.people.count == 0">
+                <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'nobody on this ship. time to die'" />-->
+                <create_order object="this.ship" id="'MoveDie'" immediate="true">
+                    <param name="byhighway" value="not this.ship.isclass.[class.ship_l, class.ship_xl]" />
+                    <param name="byhostile" value="true" />
+                </create_order>
+            </do_if>
+            <!-- zone checks -->
+            <do_all exact="$zonechecks">
+                <find_object groupname="$abandonedships" class="class.ship" docked="false" space="$ship.zone" capturable="true" functional="true" multiple="true">
+                    <match_context class="class.highway" negate="true" />
+                    <match owner="faction.ownerless" />
+                </find_object>
+                <do_if value="$abandonedships.count gt 0 ">
+                    <resume label="foundship" />
+                </do_if>
+                <!-- if no ship, move to adjacent -->
+                <do_if value="@$abandonedships.count == 0 and $ship.zone.adjacentzones.count gt 0">
+                    <set_value name="$adjacentzone" exact="$ship.zone.adjacentzones.random" />
+                    <run_script name="'move.generic'" sinceversion="1">
+                        <param name="destination" value="$adjacentzone" />
+                        <param name="position" value="$zeropos" />
+                        <param name="debugchance" value="$debugchance" />
+                    </run_script>
+                    <debug_text text="'target group is empty.'" chance="$debugchance" />
+                </do_if>
+                <run_script name="'move.random'">
+                    <param name="TimeOut" value="10s" />
+                </run_script>
+            </do_all>
+            <!-- sector checks -->
+            <find_object groupname="$abandonedships" class="class.ship" docked="false" capturable="true" space="$ship.sector"  functional="true" multiple="true">
+                <match_context class="class.highway" negate="true" />
+                <match owner="faction.ownerless" />
+            </find_object>
+            <!--found a valid ship -->
+            <label name="foundship" />
+            <do_if value="$abandonedships.count gt 0 and not $abandonedships.{1}.ismission and $abandonedships.{1}.distanceto.{this.ship} lt 1500">
+                <set_value name="$abandonedship" exact="$abandonedships.{1}" />
+                <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'moving to claim ship'" />-->
+                <do_if value="this.assignedcontrolled.people.count == 0">
+                    <!-- for now, zero crew means we kill the jobship. they should be starting with max marines, so 2-3 claims each maybe? -->
+                    <!-- eventually, we set up orders to restock crew from an eq dock so this can be used as a player order (with some adjustments) -->
+                    <!--find_station groupname="$scavengerstations" owner="faction.scavenger" state="componentstate.operational" space="player.galaxy" multiple="true">
+                        <match_any>
+                            <match equipmentdock="true" />
+                            <match wharf="true" />
+                        </match_any>
+                    </find_station>
+                    <create_list name="$stationdists" exact="$scavengerstations.count" />
+                    <do_all exact="$scavengerstations.count" counter="$i">
+                        <set_value name="$stationdists.{$i}" exact="this.ship.distanceto.{$scavengerstations.{$i}}" />
+                    </do_all>
+                    <set_value name="$closeststation" exact="$scavengerstations.{$stationdists.indexof.{$stationdists.min}}" />
+                    <do_if value="$closeststation.exists">
+                         this is temporary, may teleport crew. preferably we create a build order for this
+                        <write_to_logbook category="tips" title="'scav resupply'" text="$closeststation.knownname + ' has '+$closeststation.people.count+ ' people, '+$closeststation.people.{entityrole.marine}.count+ ' marines available'"/>
+                        <create_npc_template name="$person" entity="$closeststation.people.{entityrole.marine}.{1}" object="$ship" role="entityrole.marine" />
+                        <transfer_people object="$ship" otherobject="$closeststation">
+                            <existing_people people="[$person]" />
+                        </transfer_people>
+                        <set_value name="$cleanmeup" />
+                        <write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text=" $closeststation.distanceto.{this.ship} + ' away. collected npc ' + this.assignedcontrolled.people.count + ' people added. ' +this.assignedcontrolled.people.{entityrole.marine}.count + ' marines on board.'" />
+                    </do_if>-->
+                    <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text=" 'zero crew ship found. aborting'" />-->
+                </do_if>
+                <!--use an existing marine (preferred, seems to work fine)-->
+                <do_elseif value="this.assignedcontrolled.people.{entityrole.marine}.list.count gt 0">
+                    <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text=" 'had a marine ready. attempting to claim'" />-->
+                    <set_value name="$marine" exact="this.assignedcontrolled.people.{entityrole.marine}.list.{1}" />
+                    <set_value name="$marinetemplate" exact="$marine.npctemplate" />
+                </do_elseif>
+                <!-- turn another npc into a marine. can multiple entityroles be defined in that filter? (I think it works, but throws some errors) -->
+                <do_elseif value="this.assignedcontrolled.people.{entityrole.marine}.list.count == 0 and this.assignedcontrolled.people.count gt 0">
+                    <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'no marines, conscripting someone.' " />-->
+                    <set_value name="$marine" exact="this.assignedcontrolled.people.{1}" />
+                    <set_entity_role entity="$marine" role="entityrole.marine" />
+                    <set_value name="$marinetemplate" exact="$marine.npctemplate" />
+                </do_elseif>
+                <!-- instantiate the marine -->
+                <do_if value="$marine">
+                    <disable_collisions_between object="this.ship" target="$abandonedship" />
+                    <debug_text text="'(low) moving to target.'" chance="$debugchance" />
+                    <!-- NB: we cannot use flightbehaviour.droneattach in low attention at the moment since that requires collision-avoidance. -->
+                    <move_to destination="$abandonedship" object="this.ship" uselocalhighways="false" forcesteering="true" />
+                    <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'moved to claim ship. now in  '+this.ship.sector.knownname+'. '+ $abandonedship.distanceto.{this.ship} + ' distance away from ship in ' +$abandonedship.sector.knownname+'. attempting to set marine.' +this.assignedcontrolled.people.count + ' spaces of '+ this.assignedcontrolled.people.capacity + ' used.' + this.assignedcontrolled.people.{entityrole.marine}.list.count + ' marines, ' + this.assignedcontrolled.people.{entityrole.service}.list.count +' service, '+ this.assignedcontrolled.people.{entityrole.passenger}.list.count + ' passengers, and '  + this.assignedcontrolled.people.{entityrole.prisoner}.list.count + ' prisoners on board.'" interaction="guidance" object="$abandonedship" />-->
+                    <wait min="1s" max="3s" />
+                    <do_if value="$abandonedship.trueowner == faction.ownerless">
+                        <debug_text text="'(low) claiming target'" chance="$debugchance" />
+                        <claim_ship target="$abandonedship" pilot="$marine" />
+                    </do_if>
+                    <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'marine generated' " />
+                     remove the marine from this ship's crew manifest 
+                    <remove_npc_template object="this.assignedcontrolled" template="$marinetemplate" />
+                    <create_ship name="$pod" macro="ship_gen_xs_boardingpod_01_a_macro" zone="this.assignedcontrolled.zone">
+                        <owner exact="faction.scavenger" overridenpc="true" />
+                        <safepos object="this.assignedcontrolled" z="-1m" allowyaxis="true" />
+                    </create_ship>
+                    <assign_control_entity actor="$marine" object="$pod" post="controlpost.aipilot" transfer="true" init="true" />
+                    <write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'Claiming '+ $abandonedship.knownname + ' in ' +$currentsector.knownname " />
+                    <start_script name="'move.claim'" object="$marine">
+                        <param name="target" value="$abandonedship" />
+                        <param name="oldrole" value="entityrole.marine" />
+                        <param name="debugchance" value="$debugchance" />
+                    </start_script>
+                    -->
+                    <!--<write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'Claimed ' + $abandonedship.knownname + ' (' + $abandonedship + ') in ' +$ship.sector.knownname " />-->
+                </do_if>
+            </do_if>
+            <label name="changesectors" />
+            <find_cluster_in_range name="$AdjacentClusters" object="this.ship" maxdistance="1" multiple="true" />
+            <set_value name="$AdjacentSectors" exact="[]" />
+            <do_all exact="$AdjacentClusters.count" counter="$j">
+                <find_sector groupname="$AdjacentSectors" space="$AdjacentClusters.{$j}" multiple="true" append="true" />
+                <run_script name="'move.generic'" sinceversion="1">
+                    <param name="destination" value="$AdjacentSectors.random" />
+                    <param name="position" value="$zeropos" />
+                    <param name="debugchance" value="$debugchance" />
+                </run_script>
+            </do_all>
+            <!--<find_object groupname="$adjacentexits" class="[class.gate, class.highwayentrygate]" state="componentstate.operational" space="this.sector" multiple="true" />
+            <do_if value="$adjacentexits.count gt 0">
+                <do_all exact="$adjacentexits.count" counter="$j" >
+                    <write_to_logbook category="squad" title="'scav claim : ' + this.ship.idcode" text="'found gate ' + $adjacentexits.{j}.knownname" />
+                </do_all>
+                <set_value name="$nextlootingsector" exact="$adjacentexits.random.exit.sector" />
+                <write_to_logbook category="upkeep" title="'scav claim : ' + this.ship.idcode" text="'moving to new sector : ' + $nextlootingsector.knownname + ' from '+ this.ship.sector.knownname" />
+                <run_script name="'move.generic'" sinceversion="1">
+                    <param name="destination" value="$nextlootingsector" />
+                    <param name="position" value="$zeropos" />
+                    <param name="debugchance" value="$debugchance" />
+                </run_script>
+                
+            </do_if>-->
+            <label name="finish" />
+        </actions>
+    </attention>
+</aiscript>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<diff>
+    <add sel="/groups">
+		<group name="scv_scout_s">
+            <select macro="ship_arg_s_fighter_01_a_macro" />
+            <select macro="ship_arg_s_fighter_01_b_macro" />
+            <select macro="ship_arg_s_fighter_02_a_macro" />
+            <select macro="ship_arg_s_fighter_02_b_macro" />
+            <select macro="ship_arg_s_fighter_04_a_macro" />
+			<select macro="ship_arg_s_scout_01_a_macro" />
+            <select macro="ship_arg_s_scout_01_b_macro" />
+		</group>
+	</add>
+</diff>

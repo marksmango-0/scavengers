@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<diff>
+    <add sel="/stocks" >
+        <stock id="scavenger_trader" entitytype="trader">
+            <ware ref="inv_majaglit" min="13" max="30" chance="70" />
+            <ware ref="inv_interfaceunit" min="1" max="30" chance="70" />
+            <ware ref="inv_rarespices" min="13" max="30" chance="70" />
+            <ware ref="inv_needle" min="13" max="30" chance="70" />
+            <ware ref="inv_bandages" min="13" max="30" chance="70" />
+            <ware ref="inv_sedative" min="0" max="0" chance="70" />
+            <ware ref="inv_crystalbit" min="13" max="30" chance="70" />
+            <ware ref="inv_micromotor" min="13" max="30" chance="70" />
+            <ware ref="inv_hydraulicpump" min="13" max="30" chance="70" />
+            <ware ref="inv_microgimble" min="13" max="30" chance="70" />
+            <ware ref="inv_algaescrubber" min="13" max="30" chance="70" />
+            <ware ref="inv_rapidsandfilter" min="13" max="30" chance="70" />
+            <ware ref="inv_carbonfilter" min="13" max="30" chance="70" />
+            <ware ref="inv_herbicide" min="30" max="30" chance="70" />
+            <ware ref="inv_argnusteak" min="13" max="30" chance="10" />
+            <ware ref="inv_mixedfruit" min="13" max="30" chance="10" />
+            <ware ref="inv_digitalseminar_boarding" min="1" max="2" chance="10" />
+            <ware ref="inv_digitalseminar_engineering" min="1" max="2" chance="10" />
+            <ware ref="inv_digitalseminar_management" min="1" max="2" chance="10" />
+            <ware ref="inv_digitalseminar_morale" min="1" max="2" chance="10" />
+            <ware ref="inv_digitalseminar_piloting" min="1" max="2" chance="10" />
+            <ware ref="inv_securecontainer" min="1" max="3" chance="10" />
+            <ware ref="inv_magneticmaterial" min="1" max="3" chance="10" />
+            <ware ref="inv_firstaidkit" min="1" max="2" chance="10" />
+            <ware ref="inv_fluxcapacitor" min="0" max="0" />
+            <ware ref="inv_damagedsingularityengine" min="0" max="0" />
+            <ware ref="inv_programmablefieldarray" min="0" max="0" />
+            <ware ref="inv_crystal_01" min="0" max="0" />
+            <ware ref="inv_crystal_02" min="0" max="0" />
+            <ware ref="inv_crystal_03" min="0" max="0" />
+            <ware ref="inv_crystal_04" min="0" max="0" />
+            <ware ref="inv_crystal_05" min="0" max="0" />
+            <ware ref="inv_electronics" min="0" max="0" />
+            <ware ref="inv_salvagedelectronics" min="0" max="0" />
+            <ware ref="inv_spaceflycaviar" min="0" max="0" />
+            <ware ref="inv_spaceflyeggs" min="0" max="0" />
+            <ware ref="inv_finemeal" min="0" max="0" />
+
+            <ware ref="inv_sm_salvage" min="0" max="0" />
+            <ware ref="inv_med_salvage" min="0" max="0" />
+            <ware ref="inv_lg_salvage" min="0" max="0" />
+
+            <ware ref="inv_hq_salvage_engine" min="0" max="0" />
+            <ware ref="inv_hq_salvage_shield" min="0" max="0" />
+            <ware ref="inv_hq_salvage_pulse" min="0" max="0" />
+            <!--TEMP-->
+            <ware ref="engine_gen_spacesuit_01_mk2" min="1" max="1" chance="100" />
+            <ware ref="weapon_gen_spacesuit_repairlaser_01_mk1" min="1" max="1" chance="100" />
+            <ware ref="weapon_gen_spacesuit_laser_01_mk1" min="1" max="1" chance="100" />
+            <ware ref="weapon_gen_spacesuit_demolition_01_mk1" min="1" max="1" chance="100" />
+            <ware ref="software_scannerobjectmk3" min="1" max="1" chance="100" />
+        </stock>
+        <stock id="scavenger_shadyguy" entitytype="trader">
+            <ware ref="inv_decryptionmodule" min="5" max="20" chance="90" />
+            <ware ref="inv_agidevice_02" min="5" max="20" chance="90" />
+            <ware ref="inv_remotedetonator" min="5" max="20" chance="90" />
+            <ware ref="inv_hallucinogenics" min="0" max="0" chance="100" />
+            <ware ref="inv_harddrug_01" min="0" max="2" chance="100" />
+            <ware ref="inv_agidevice_03" min="10" max="20" chance="90" />
+            <ware ref="inv_modulartrigger" min="10" max="20" chance="90" />
+            <ware ref="inv_advancedtargetingmodule" min="0" max="2" chance="90" />
+            <ware ref="inv_unstablecrystal" min="0" max="2" chance="90" />
+            <ware ref="inv_securitydecryptionsystem" min="0" max="2" chance="90" />
+            <ware ref="inv_securitybypasssystem" min="0" max="2" chance="90" />
+            <ware ref="inv_securityslicer" min="0" max="2" chance="90" />
+            <ware ref="inv_agidevice_01" min="0" max="2" chance="90" />
+            <ware ref="bomb_player_limpet_emp_01_mk1" min="1" max="5" chance="30"/>
+            <ware ref="bomb_player_limpet_mine_01_mk1" min="1" max="5" chance="30"/>
+            <ware ref="inv_crystal_01" min="0" max="0" />
+            <ware ref="inv_crystal_02" min="0" max="0" />
+            <ware ref="inv_crystal_03" min="0" max="0" />
+            <ware ref="inv_crystal_04" min="0" max="0" />
+            <ware ref="inv_crystal_05" min="0" max="0" />
+            <ware ref="inv_electronics" min="0" max="0" />
+            <ware ref="inv_salvagedelectronics" min="0" max="0" />
+            <ware ref="inv_spaceflycaviar" min="0" max="0" />
+            <ware ref="inv_spaceflyeggs" min="0" max="0" />
+            <ware ref="inv_finemeal" min="0" max="0" />
+
+            <ware ref="inv_sm_salvage" min="0" max="0" />
+            <ware ref="inv_med_salvage" min="0" max="0" />
+            <ware ref="inv_lg_salvage" min="0" max="0" />
+
+            <ware ref="inv_hq_salvage_engine" min="0" max="0" />
+            <ware ref="inv_hq_salvage_shield" min="0" max="0" />
+            <ware ref="inv_hq_salvage_pulse" min="0" max="0" />
+        </stock>
+
+    </add>
+</diff>

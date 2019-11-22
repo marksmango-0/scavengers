@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mdscript name="PlaceScavengerStations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="md.xsd">
+    <cues>
+        <cue name="Place_ScavengerHead">
+            <conditions>
+                <event_cue_signalled cue="md.Setup.Start" />
+            </conditions>
+            <actions>
+
+                <!--<write_to_logbook category="upkeep" title="'SCAVENGER DEBUG'" text="'Scavenger start script triggered.'" />-->
+                <set_value name="$ScavengerFactionTag" exact="'SCV'" />
+                <set_value name="$WharfCount" exact="2" />
+                <set_value name="$DockCount" exact="4" />
+                <!-- there has to be a better way to get the total number of sectors -->
+                <find_sector groupname="$SectorTotalGroup" space="player.galaxy" multiple="true">
+                    <match macro="macro.cluster_black2_sector01_macro" negate="true" />
+                </find_sector>
+                <set_value name="$SectorCount" exact="$SectorTotalGroup.count" />
+                <find_sector groupname="$SectorGroup" space="player.galaxy" owner="faction.ownerless" multiple="true">
+                    <match macro="macro.cluster_black2_sector01_macro" negate="true" />
+                </find_sector>
+                <set_value name="$FreeSectorCount" exact="$SectorGroup.count" />
+                <do_if value="$FreeSectorCount lt ($WharfCount + $DockCount)">
+                    <do_if value="$FreeSectorCount le 2" >
+                        <write_to_logbook category="upkeep" title="'SCAVENGER DEBUG'" text="'Not enough free sectors. Only '+$FreeSectorCount+ ' of ' + ($WharfCount + $DockCount) + ' available.'" />
+                    </do_if>
+                    <do_elseif value="$FreeSectorCount lt 5" >
+                        <set_value name="$WharfCount" exact="1" />
+                        <set_value name="$DockCount" exact="1" />
+                    </do_elseif>
+                    <do_elseif value="$FreeSectorCount lt 7" >
+                        <set_value name="$WharfCount" exact="1" />
+                        <set_value name="$DockCount" exact="2" />
+                    </do_elseif>
+                    <do_elseif value="$FreeSectorCount lt 12" >
+                        <set_value name="$WharfCount" exact="2" />
+                        <set_value name="$DockCount" exact="3" />
+                    </do_elseif> 
+                    <do_elseif value="$FreeSectorCount lt 20" >
+                        <set_value name="$WharfCount" exact="2" />
+                        <set_value name="$DockCount" exact="4" />
+                    </do_elseif>
+                </do_if>
+                <find_station name="$ScavengerEquipmentDock" space="player.galaxy" owner="faction.scavenger" multiple="false" macro="macro.station_gen_factory_base_01_macro" />
+                <find_station name="$scavstations" space="player.galaxy" owner="faction.scavenger" multiple="true" />
+                <do_if value="not $ScavengerEquipmentDock.exists and $FreeSectorCount gt 2 and $scavstations.count == 0">
+                    <set_value name="$xvalue" min="-300000" max="300000" />
+                    <set_value name="$yvalue" min="-50000" max="50000" />
+                    <set_value name="$zvalue" min="-300000" max="300000" />
+                    <create_position name="$SHeadPos" x="$xvalue" y="$yvalue" z="$zvalue" />
+                    <!--pick a random position (within reason). going too far on the y axis makes stations difficult to navigate to -->
+                    <!-- -->
+                    <!--argon prime for debugging -->
+                    <!--<create_station name="$ScavengerEquipmentDock" macro="macro.station_gen_factory_base_01_macro" sector="player.sector" constructionplan="'tel_equipmentdock'" owner="faction.scavenger" state="componentstate.operational">
+                            <safepos position="$SHeadPos" includeplotbox="true" min="30km"/>
+                        </create_station>-->
+                    <!-- -->
+                    <!-- spawn in random, unowned space -->
+                    <create_station name="$ScavengerEquipmentDock" macro="macro.station_gen_factory_base_01_macro" sector="$SectorGroup.random" constructionplan="'tel_equipmentdock'" owner="faction.teladi" state="componentstate.operational">
+                        <safepos position="$SHeadPos" includeplotbox="true" />
+                    </create_station>
+					<set_owner object="$ScavengerEquipmentDock" faction="faction.scavenger" />
+                    <set_object_name object="$ScavengerEquipmentDock" name="$ScavengerFactionTag + ' Scrapyard'" comment="" />
+                    <!-- TODO create a faction representative -->
+                    <set_faction_headquarters faction="faction.scavenger" station="$ScavengerEquipmentDock" />
+                    <signal_cue_instantly cue="Assign_Station_Defense" param="$ScavengerEquipmentDock" />
+
+                    <create_station name="$ScavengerWharf" macro="macro.station_gen_factory_base_01_macro" zone="$ScavengerEquipmentDock.zone" constructionplan="'arg_wharf'" owner="faction.teladi" state="componentstate.operational">
+                        <safepos object="$ScavengerEquipmentDock" min="30km" max="80km" allowyaxis="false" />
+                    </create_station>
+					<set_owner object="$ScavengerWharf" faction="faction.scavenger" />
+                    <set_object_name object="$ScavengerWharf" name="$ScavengerFactionTag + ' Shipbreaker'" comment="" />
+                    <signal_cue_instantly cue="Assign_Station_Defense" param="$ScavengerWharf" />
+                    <set_value name="$WharfSector" exact="$ScavengerWharf.sector" />
+                    <remove_from_group group="$SectorGroup" object="$WharfSector" />
+                    <!---->
+                    <!--<show_notification text="'Initial Scavenger stations spawned.'" sound="notification_warning" />-->
+                    <do_all exact="$WharfCount - 1" counter="$i">
+                        <set_value name="$xvalue" min="-300000" max="300000" />
+                        <set_value name="$yvalue" min="-50000" max="50000" />
+                        <set_value name="$zvalue" min="-300000" max="300000" />
+                        <create_position name="$WharfPos" x="$xvalue" y="$yvalue" z="$zvalue" />
+                        <create_station name="$ScavengerWharfExtra" macro="macro.station_gen_factory_base_01_macro" sector="$SectorGroup.random" constructionplan="'arg_wharf'" owner="faction.argon" state="componentstate.operational">
+                            <safepos position="$WharfPos" min="10km" max="100km" />
+                        </create_station>
+						<set_owner object="$ScavengerWharfExtra" faction="faction.scavenger" />
+                        <set_object_name object="$ScavengerWharfExtra" name="$ScavengerFactionTag + ' Shipbreaker'" comment="" />
+                        <signal_cue_instantly cue="Assign_Station_Defense" param="$ScavengerWharfExtra" />
+                        <set_value name="$ExtraWharfSector" exact="$ScavengerWharfExtra.sector" />
+                        <remove_from_group group="$SectorGroup" object="$ExtraWharfSector" />
+                        <write_to_logbook category="upkeep" title="'SCAVENGER DEBUG'" text="'Scavenger wharf spawned in '+ $ScavengerWharfExtra.sector.knownname" interaction="showonmap" object="$ScavengerWharfExtra" />
+                    </do_all>
+                    <do_all exact="$DockCount - 1" counter="$i">
+                        <set_value name="$xvalue" min="-300000" max="300000" />
+                        <set_value name="$yvalue" min="-50000" max="50000" />
+                        <set_value name="$zvalue" min="-300000" max="300000" />
+                        <create_position name="$DockPos" x="$xvalue" y="$yvalue" z="$zvalue" />
+                        <create_station name="$ScavengerDockExtra" macro="macro.station_gen_factory_base_01_macro" sector="$SectorGroup.random" constructionplan="'tel_equipmentdock'" owner="faction.teladi" state="componentstate.operational">
+                            <safepos position="$DockPos" min="10km" max="40km" />
+                        </create_station>
+							<set_owner object="$ScavengerDockExtra" faction="faction.scavenger" />
+                        <set_object_name object="$ScavengerDockExtra" name="$ScavengerFactionTag + ' Scrapyard'" comment="" />
+                        <signal_cue_instantly cue="Assign_Station_Defense" param="$ScavengerDockExtra" />
+                        <set_value name="$ExtraDockSector" exact="$ScavengerDockExtra.sector" />
+                        <remove_from_group group="$SectorGroup" object="$ExtraDockSector" />
+                        <!--<write_to_logbook category="upkeep" title="'SCAVENGER DEBUG'" text="'Scavenger dock spawned in '+ $ExtraDockSector.knownname" interaction="showonmap" object="$ScavengerDockExtra"/>-->
+                    </do_all>
+                    <!--<write_to_logbook category="upkeep" title="'SCAVENGER DEBUG'" text="'Spawned ' + $WharfCount+$DockCount + ' scavenger stations.'" />-->
+                </do_if>
+            </actions>
+        </cue>
+        <cue name="Assign_Station_Defense" instantiate="true" namespace="this">
+            <conditions>
+                <event_cue_signalled />
+            </conditions>
+            <actions>
+                <set_value name="$target" exact="event.param" />
+                <!--<write_to_logbook category="upkeep" title="'SCAVENGER DEBUG'" text="'Attempting to spawn defense ships for '+$target.knownname + ' in ' + $target.sector.knownname" interaction="showonmap" object="$target" />-->
+                <create_ship name="$Leader" sector="$target.sector">
+                    <select faction="faction.argon" tags="tag.military" size="class.ship_m" />
+                    <owner exact="faction.scavenger" overridenpc="true" />
+                    <loadout>
+                        <level exact="1.0" />
+                    </loadout>
+                </create_ship>
+                <set_object_commander object="$Leader" commander="$target" assignment="assignment.defence"/>
+                <create_order id="'ProtectStation'" object="$Leader" default="true">
+                    <param name="station" value="$target" />
+                </create_order>
+                <!-- spawn smaller ships -->
+                <create_group groupname="$Support" />
+                <do_all exact="15" counter="$i">
+                    <create_ship groupname="$Support" name="$SupportUnit" sector="$target.sector">
+                        <select faction="faction.argon" tags="tag.military" size="class.ship_s" />
+                        <owner exact="faction.scavenger" overridenpc="true" />
+                        <loadout>
+                            <level exact="1.0" />
+                        </loadout>
+                    </create_ship>
+                    <set_object_commander object="$SupportUnit" commander="$Leader" assignment="assignment.defence"/>
+                    <create_order id="'ProtectStation'" object="$SupportUnit" default="true">
+                        <param name="station" value="$target" />
+                    </create_order>
+                    <create_formation leader="$Leader" follower="$SupportUnit" formation="formationshape.halfcircle" param="5km"/>
+                </do_all>
+                <!--<write_to_logbook category="upkeep" title="'SCAVENGER DEBUG'" text="'Assigned defense ships to '+ $target.knownname + ' in ' + $target.sector.knownname" interaction="showonmap" object="$target" />-->
+            </actions>
+        </cue>
+    </cues>
+</mdscript>

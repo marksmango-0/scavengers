@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<diff>
+<add sel="/characters">
+
+  <character name="scavenger.allraces">
+    <select macro="character_argon_male_pilot_01_macro" />
+    <select macro="character_argon_male_pilot_02_macro" />
+    <select macro="character_argon_male_pilot_03_macro" />
+    <select macro="character_argon_male_pilot_04_macro" />
+    <select macro="character_argon_male_pilot_05_macro" />
+    <select macro="character_argon_male_pilot_06_macro" />
+    <select macro="character_argon_male_pilot_07_macro" />
+    <select macro="character_split_male_generic_01_macro"  />
+    <select macro="character_teladi_male_generic_01_macro" />
+    <select macro="character_teladi_male_generic_02_macro" />
+    <select macro="character_teladi_male_pilot_01_macro" />
+    <select macro="character_teladi_female_generic_01_macro" />
+    <select macro="character_teladi_female_generic_02_macro" />
+    <select macro="character_teladi_female_pilot_01_macro" />
+    <select macro="character_argon_female_pilot_01_macro" />
+    <select macro="character_argon_female_pilot_02_macro" />
+    <select macro="character_argon_female_pilot_03_macro" />
+    <select macro="character_argon_female_pilot_04_macro" />
+    <select macro="character_argon_female_pilot_05_macro" />
+    <select macro="character_argon_female_pilot_06_macro" />
+    <select macro="character_argon_female_pilot_07_macro" />
+    <select macro="character_argon_female_pilot_08_macro" />
+    <select macro="character_argon_female_pilot_09_macro" />
+    <select macro="character_argon_male_trader_01_macro" />
+    <select macro="character_argon_male_trader_02_macro" />
+    <select macro="character_argon_male_trader_03_macro" />
+    <select macro="character_argon_male_trader_04_macro" />
+    <select macro="character_argon_male_trader_05_macro" />
+    <select macro="character_argon_male_trader_06_macro" />
+    <select macro="character_argon_male_trader_07_macro" />
+    <select macro="character_argon_male_trader_08_macro" />
+    <select macro="character_argon_female_trader_01_macro" />
+    <select macro="character_argon_female_trader_02_macro" />
+    <select macro="character_argon_female_trader_03_macro" />
+    <select macro="character_argon_female_trader_04_macro" />
+    <select macro="character_argon_female_trader_05_macro" />
+    <select macro="character_argon_male_generic_01_macro" />
+    <select macro="character_argon_male_engineer_01_macro" />
+    <select macro="character_argon_male_engineer_02_macro" />
+    <select macro="character_argon_male_engineer_03_macro" />
+    <select macro="character_argon_male_engineer_04_macro" />
+    <select macro="character_argon_male_engineer_05_macro" />
+    <select macro="character_argon_male_engineer_06_macro" />
+    <select macro="character_argon_female_engineer_01_macro" />
+    <select macro="character_argon_female_engineer_02_macro" />
+    <select macro="character_argon_female_engineer_03_macro" />
+    <select macro="character_argon_female_engineer_04_macro" />
+    <select macro="character_argon_female_engineer_05_macro" />
+    <select macro="character_split_female_generic_01_macro" />
+    <select macro="character_argon_female_generic_01_macro" />
+    <select macro="character_argon_male_marine_mk1_01_macro" />
+    <select macro="character_argon_male_marine_mk2_01_macro" />
+    <select macro="character_argon_male_marine_mk3_01_macro" />
+    <select macro="character_argon_male_marine_helmet_01_macro" />
+    <select macro="character_ar_female_test_a_macro" />
+    <select macro="character_paranid_generic_01_macro" />
+    <select macro="character_paranid_generic_02_macro" />
+    <select macro="character_paranid_pilot_01_macro" />
+    <select macro="character_paranid_pilot_02_macro" />
+    <select macro="character_argon_male_civilian_01_macro" />
+    <select macro="character_argon_male_civilian_02_macro" />
+    <select macro="character_argon_male_civilian_03_macro" />
+    <select macro="character_argon_male_civilian_04_macro" />
+    <select macro="character_argon_male_civilian_05_macro" />
+    <select macro="character_argon_male_civilian_06_macro" />
+    <select macro="character_argon_male_civilian_07_macro" />
+    <select macro="character_argon_male_civilian_08_macro" />
+    <select macro="character_argon_male_civilian_09_macro" />
+    <select macro="character_argon_male_civilian_10_macro" />
+    <select macro="character_argon_male_civilian_11_macro" />
+    <select macro="character_argon_male_civilian_12_macro" />
+    <select macro="character_argon_male_civilian_13_macro" />
+    <select macro="character_argon_male_civilian_14_macro" />
+    <select macro="character_argon_male_civilian_15_macro" />
+    <select macro="character_argon_male_civilian_16_macro" />
+    <select macro="character_argon_male_civilian_17_macro" />
+    <select macro="character_argon_male_civilian_18_macro" />
+    <select macro="character_argon_male_civilian_19_macro" />
+    <select macro="character_argon_male_civilian_20_macro" />
+    <select macro="character_argon_female_civilian_01_macro" />
+    <select macro="character_argon_female_civilian_02_macro" />
+    <select macro="character_argon_female_civilian_03_macro" />
+    <select macro="character_argon_female_civilian_04_macro" />
+    <select macro="character_argon_female_civilian_05_macro" />
+    <select macro="character_argon_female_civilian_06_macro" />
+    <select macro="character_argon_female_civilian_07_macro" />
+    <select macro="character_argon_female_civilian_09_macro" />
+    <select macro="character_argon_female_civilian_10_macro" />
+    <select macro="character_argon_female_civilian_12_macro" />
+    <select macro="character_argon_female_civilian_13_macro" />
+    <select macro="character_argon_female_civilian_15_macro" />
+    <select macro="character_argon_female_civilian_16_macro" />
+    <!-- Croptop characters disabled
+    <select macro="character_argon_female_civilian_08_macro" />
+    <select macro="character_argon_female_civilian_11_macro" />
+    <select macro="character_argon_female_civilian_14_macro" />
+    <select macro="character_argon_female_civilian_17_macro" />-->
+  </character>
+  <character name="scavenger.factionrepresentative">
+    <!--TODO @Owen Put together decent faction rep character definitions-->
+    <select character="argon.factionrepresentative.male" />
+    <select character="argon.factionrepresentative.female" />
+  </character>
+  <character name="scavenger.factionrepresentative.male">
+    <select character="argon.pilot.male"/>
+  </character>
+  <character name="scavenger.factionrepresentative.female">
+    <select character="argon.pilot.female"/>
+  </character>
+  <!-- TRADER -->
+  <character name="scavenger.trader">
+    <select character="scavenger.trader.male" />
+    <select character="scavenger.trader.female" />
+  </character>
+  <character name="scavenger.trader.male">
+    <select macro="character_argon_male_trader_01_macro" />
+    <select macro="character_argon_male_trader_02_macro" />
+    <select macro="character_argon_male_trader_03_macro" />
+    <select macro="character_argon_male_trader_04_macro" />
+    <select macro="character_argon_male_trader_05_macro" />
+    <select macro="character_argon_male_trader_06_macro" />
+    <select macro="character_argon_male_trader_07_macro" />
+    <select macro="character_argon_male_trader_08_macro" />
+  </character>
+  <character name="scavenger.trader.female">
+    <select macro="character_argon_female_trader_01_macro" />
+    <select macro="character_argon_female_trader_02_macro" />
+    <select macro="character_argon_female_trader_03_macro" />
+    <select macro="character_argon_female_trader_04_macro" />
+    <select macro="character_argon_female_trader_05_macro" />
+  </character>
+  <character name="scavenger.shiptrader">
+    <select character="scavenger.shiptrader.male" />
+    <select character="scavenger.shiptrader.female" />
+  </character>
+  <character name="scavenger.shiptrader.male">
+    <select macro="character_argon_male_trader_01_macro" />
+    <select macro="character_argon_male_trader_02_macro" />
+    <select macro="character_argon_male_trader_03_macro" />
+    <select macro="character_argon_male_trader_04_macro" />
+    <select macro="character_argon_male_trader_05_macro" />
+    <select macro="character_argon_male_trader_06_macro" />
+    <select macro="character_argon_male_trader_07_macro" />
+    <select macro="character_argon_male_trader_08_macro" />
+  </character>
+  <character name="scavenger.shiptrader.female">
+    <select macro="character_argon_female_trader_01_macro" />
+    <select macro="character_argon_female_trader_02_macro" />
+    <select macro="character_argon_female_trader_03_macro" />
+    <select macro="character_argon_female_trader_04_macro" />
+    <select macro="character_argon_female_trader_05_macro" />
+  </character>
+  <character name="scavenger.service">
+    <select character="scavenger.service.male" />
+    <select character="scavenger.service.female" />
+  </character>
+  <character name="scavenger.service.male">
+    <!--TODO @Owen reduce the chances of old Argon character macros which have less head/hair variation-->
+    <select macro="character_argon_male_engineer_01_macro" />
+    <select macro="character_argon_male_engineer_02_macro" />
+    <select macro="character_argon_male_engineer_03_macro" />
+    <select macro="character_argon_male_engineer_04_macro" />
+    <select macro="character_argon_male_engineer_05_macro" />
+    <select macro="character_argon_male_engineer_06_macro" />
+
+    <!--TODO @Owen - spawning logic for for civilians so they're not used as service-->
+    
+    <select macro="character_argon_male_civilian_06_macro" />
+    <select macro="character_argon_male_civilian_07_macro" />
+    <select macro="character_argon_male_civilian_08_macro" />
+    <select macro="character_argon_male_civilian_09_macro" />
+    <select macro="character_argon_male_civilian_10_macro" />
+    <select macro="character_argon_male_civilian_11_macro" />
+    <select macro="character_argon_male_civilian_12_macro" />
+    <select macro="character_argon_male_civilian_13_macro" />
+    <select macro="character_argon_male_civilian_14_macro" />
+    <select macro="character_argon_male_civilian_15_macro" />
+    <select macro="character_argon_male_civilian_16_macro" />
+    <select macro="character_argon_male_civilian_17_macro" />
+    <select macro="character_argon_male_civilian_18_macro" />
+    <select macro="character_argon_male_civilian_19_macro" />
+    <select macro="character_argon_male_civilian_20_macro" />
+  </character>
+  <character name="scavenger.service.female">
+    <select macro="character_argon_female_engineer_01_macro" />
+    <select macro="character_argon_female_engineer_02_macro" />
+    <select macro="character_argon_female_engineer_03_macro" />
+    <select macro="character_argon_female_engineer_04_macro" />
+    <select macro="character_argon_female_engineer_05_macro" />
+    <select macro="character_argon_female_pilot_03_macro" />
+    <select macro="character_argon_female_pilot_04_macro" />
+    <select macro="character_argon_female_pilot_05_macro" />
+    <select macro="character_argon_female_pilot_06_macro" />
+    <select macro="character_argon_female_pilot_07_macro" />
+    <select macro="character_argon_female_pilot_08_macro" />
+    <select macro="character_argon_female_pilot_09_macro" />
+
+    <!--TODO @Owen - spawning logic for for civilians so they're not used as service-->
+    <select macro="character_argon_female_civilian_06_macro" />
+    <select macro="character_argon_female_civilian_07_macro" />
+    <select macro="character_argon_female_civilian_09_macro" />
+    <select macro="character_argon_female_civilian_10_macro" />
+    <select macro="character_argon_female_civilian_12_macro" />
+    <select macro="character_argon_female_civilian_13_macro" />
+    <select macro="character_argon_female_civilian_15_macro" />
+    <select macro="character_argon_female_civilian_16_macro" />
+    <!--Croptop characters disabled
+    <select macro="character_argon_female_civilian_08_macro" />
+    <select macro="character_argon_female_civilian_11_macro" />
+    <select macro="character_argon_female_civilian_14_macro" />
+    <select macro="character_argon_female_civilian_17_macro" />-->
+  </character>
+  
+  <character name="scavenger.marine">
+    <!--TODO @Owen Put together decent marine character definitions-->
+    <select character="scavenger.marine.male" />
+    <select character="scavenger.marine.female" />
+  </character>
+  <character name="scavenger.marine.male">
+    <select character="scavenger.pilot.male"/>
+    <select macro="character_argon_male_marine_helmet_01_macro" />
+  </character>
+  <character name="scavenger.marine.female">
+    <select character="scavenger.pilot.female"/>
+  </character>
+  <character name="scavenger.passenger">
+    <select character="scavenger.passenger.male" />
+    <select character="scavenger.passenger.female" />
+  </character>
+  <character name="scavenger.passenger.male">
+    <select character="scavenger.civilian.male" />
+  </character>
+  <character name="scavenger.passenger.female">
+    <select character="scavenger.civilian.female" />
+  </character>
+  <character name="scavenger.prisoner">
+    <select character="scavenger.prisoner.male" />
+    <select character="scavenger.prisoner.female" />
+  </character>
+  <character name="scavenger.prisoner.male">
+    <select macro="character_argon_male_pilot_01_macro" />
+    <select macro="character_argon_male_pilot_02_macro" />
+    <select macro="character_argon_male_pilot_03_macro" />
+    <select macro="character_argon_male_pilot_04_macro" />
+    <select macro="character_argon_male_pilot_05_macro" />
+    <select macro="character_argon_male_pilot_06_macro" />
+    <select macro="character_argon_male_pilot_07_macro" />
+  </character>
+  <character name="scavenger.prisoner.female">
+    <select macro="character_ar_female_test_a_macro" />
+    <select macro="character_argon_female_pilot_03_macro" />
+    <select macro="character_argon_female_pilot_04_macro" />
+    <select macro="character_argon_female_pilot_05_macro" />
+  </character>
+  <character name="scavenger.civilian">
+    <select character="scavenger.civilian.male" />
+    <select character="scavenger.civilian.female" />
+  </character>
+  <character name="scavenger.civilian.male">
+    <select macro="character_argon_male_civilian_06_macro" />
+    <select macro="character_argon_male_civilian_07_macro" />
+    <select macro="character_argon_male_civilian_08_macro" />
+    <select macro="character_argon_male_civilian_09_macro" />
+    <select macro="character_argon_male_civilian_10_macro" />
+    <select macro="character_argon_male_civilian_11_macro" />
+    <select macro="character_argon_male_civilian_12_macro" />
+    <select macro="character_argon_male_civilian_13_macro" />
+    <select macro="character_argon_male_civilian_14_macro" />
+    <select macro="character_argon_male_civilian_15_macro" />
+    <select macro="character_argon_male_civilian_16_macro" />
+    <select macro="character_argon_male_civilian_17_macro" />
+    <select macro="character_argon_male_civilian_18_macro" />
+    <select macro="character_argon_male_civilian_19_macro" />
+    <select macro="character_argon_male_civilian_20_macro" />
+  </character>
+  <character name="scavenger.civilian.female">
+    <select macro="character_argon_female_civilian_06_macro" />
+    <select macro="character_argon_female_civilian_07_macro" />
+    <select macro="character_argon_female_civilian_09_macro" />
+    <select macro="character_argon_female_civilian_10_macro" />
+    <select macro="character_argon_female_civilian_12_macro" />
+    <select macro="character_argon_female_civilian_13_macro" />
+    <select macro="character_argon_female_civilian_15_macro" />
+    <select macro="character_argon_female_civilian_16_macro" />
+    <!--Croptop characters disabled
+    <select macro="character_argon_female_civilian_08_macro" />
+    <select macro="character_argon_female_civilian_11_macro" />
+    <select macro="character_argon_female_civilian_14_macro" />
+    <select macro="character_argon_female_civilian_17_macro" />-->
+  </character>
+  <!-- PILOT -->
+  <character name="scavenger.pilot">
+    <select character="scavenger.pilot.male" />
+    <select character="scavenger.pilot.female" />
+  </character>
+  <character name="scavenger.pilot.male">
+    <select macro="character_argon_male_pilot_01_macro" />
+    <select macro="character_argon_male_pilot_02_macro" />
+    <select macro="character_argon_male_pilot_03_macro" />
+    <select macro="character_argon_male_pilot_04_macro" />
+    <select macro="character_argon_male_pilot_05_macro" />
+    <select macro="character_argon_male_pilot_06_macro" />
+    <select macro="character_argon_male_pilot_07_macro" />
+  </character>
+  <character name="scavenger.pilot.female">
+    <select macro="character_argon_female_pilot_02_macro" />
+    <select macro="character_argon_female_pilot_03_macro" />
+    <select macro="character_argon_female_pilot_04_macro" />
+    <select macro="character_argon_female_pilot_05_macro" />
+    <select macro="character_argon_female_pilot_06_macro" />
+    <select macro="character_argon_female_pilot_07_macro" />
+    <select macro="character_argon_female_pilot_08_macro" />
+    <select macro="character_argon_female_pilot_09_macro" />
+  </character>
+  <!-- COMMANDER -->
+  <character name="scavenger.commander">
+    <select character="scavenger.commander.male" />
+    <select character="scavenger.commander.female" />
+  </character>
+  <character name="scavenger.commander.male">
+    <select macro="character_argon_male_pilot_01_macro" />
+    <select macro="character_argon_male_pilot_02_macro" />
+    <select macro="character_argon_male_pilot_03_macro" />
+    <select macro="character_argon_male_pilot_04_macro" />
+    <select macro="character_argon_male_pilot_05_macro" />
+    <select macro="character_argon_male_pilot_06_macro" />
+    <select macro="character_argon_male_pilot_07_macro" />
+  </character>
+  <character name="scavenger.commander.female">
+    <select macro="character_argon_female_civilian_04_macro" />
+    <select macro="character_ar_female_test_a_macro" />
+    <select macro="character_argon_female_pilot_03_macro" />
+    <select macro="character_argon_female_pilot_04_macro" />
+    <select macro="character_argon_female_pilot_05_macro" />
+  </character>
+  
+	<character name="scavenger.manager">
+		<select character="scavenger.manager.male" />
+		<select character="scavenger.manager.female" />
+	  </character>
+	  <character name="scavenger.manager.male">
+		<select macro="character_argon_male_trader_01_macro" />
+		<select macro="character_argon_male_trader_02_macro" />
+		<select macro="character_argon_male_trader_03_macro" />
+		<select macro="character_argon_male_trader_04_macro" />
+		<select macro="character_argon_male_trader_05_macro" />
+		<select macro="character_argon_male_trader_06_macro" />
+		<select macro="character_argon_male_trader_07_macro" />
+		<select macro="character_argon_male_trader_08_macro" />
+	  </character>
+	  <character name="scavenger.manager.female">
+		<select macro="character_argon_female_trader_01_macro" />
+		<select macro="character_argon_female_trader_02_macro" />
+		<select macro="character_argon_female_trader_03_macro" />
+		<select macro="character_argon_female_trader_04_macro" />
+		<select macro="character_argon_female_trader_05_macro" />
+	  </character>
+<character name="scavenger.shadyguy">
+    <select character="scavenger.shadyguy.male" />
+    <select character="scavenger.shadyguy.female" />
+  </character>
+  <character name="scavenger.shadyguy.male">
+    <select character="scavenger.pilot.male" />
+    <select character="scavenger.civilian.male" />
+  </character>
+  <character name="scavenger.shadyguy.female">
+    <select character="scavenger.pilot.female" />
+    <select character="scavenger.civilian.female" />
+  </character>
+</add>
+</diff>
