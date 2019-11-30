@@ -7,7 +7,7 @@
 				<order order="CollectDropsEverywhere" default="true" />
 			</orders>
 			<category faction="argon" tags="[scout]" size="ship_s" />
-			<quota galaxy="40" cluster="3" /> <!--this is a testing value. set back to 40/1 ish -->
+			<quota galaxy="40" cluster="3" />
 			<location class="galaxy" macro="xu_ep2_universe_macro" />
 			<environment buildatshipyard="false" />
 			<basket basket="all" />
@@ -25,7 +25,7 @@
 				<order order="ClaimUnownedShips" default="true" />
 			</orders>
 			<category faction="argon" tags="[scout]" size="ship_s" />
-			<quota galaxy="40" cluster="5" /> <!--this is a testing value. set back to 10/1 ish -->
+			<quota galaxy="40" cluster="5" /> 
 			<location class="galaxy" macro="xu_ep2_universe_macro" />
 			<environment buildatshipyard="false" />
 			<ship>
